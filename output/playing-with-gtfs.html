@@ -107,7 +107,7 @@ Using pandas, seaborn and the all new and cool partridge.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Exploring-Israel's-MOT-GTFS-files...">Exploring Israel's MOT GTFS files...<a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files...">&#182;</a></h1><p>Over at <a href="&#39;https://github.com/hasadna/open-bus&#39;">hasadna/open-bus</a> we want to build an archive of country-wide bus arrival times. Our way to get there is through a <a href="&#39;https://www.gov.il/he/Departments/General/real_time_information_siri&#39;">SIRI interface</a> provided by the Ministry of Transportation. We this archive we need to continually make SOAP requests, such that their aggregated bus location responses will allow us to calculate arrival times for all bus rides across the country.</p>
+<h1 id="Exploring-Israel's-MOT-GTFS-files...">Exploring Israel's MOT GTFS files...<a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files...">&#182;</a></h1><p>Over at <a href="&#39;https://github.com/hasadna/open-bus&#39;">hasadna/open-bus</a> we want to build an archive of country-wide bus arrival times. Our way to get there is through a <a href="&#39;https://www.gov.il/he/Departments/General/real_time_information_siri&#39;">SIRI interface</a> provided by the Ministry of Transportation. We need to continually make SOAP requests, in such a way so that their aggregated bus location responses will allow us to calculate arrival times for all bus rides across the country.</p>
 <p>In order to do so, I want to first analyze MOT's <a href="&#39;https://www.gov.il/he/Departments/General/gtfs_general_transit_feed_specifications&#39;">static GTFS data</a> to figure out what kind of numbers we're talking about, so we can start talking about design and scale for building an efficient and robust archiving module for SIRI realtime info.</p>
 <p>The agenda for this notebook is roughly so: (you can skip to item 3 if you're just interested in the stats):</p>
 <ol>
@@ -1048,7 +1048,7 @@ Oh goody! we&#39;re up-to-date!
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That's a big number, from here on we'll try to understand better its distribution</p>
+<p>That's a big number, from here on we'll try to better understand its distribution</p>
 
 </div>
 </div>
@@ -1057,7 +1057,7 @@ Oh goody! we&#39;re up-to-date!
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Overall-stops-per-minute">Overall stops per minute<a class="anchor-link" href="#Overall-stops-per-minute">&#182;</a></h3><p>First time I play with this kind of timeseries on pandas, so I'll try a few different ways (including the deprecated seaborn tsplot). Not gonna try to explain how these methods compare... I keep the diversity mostly for educational purposes.</p>
+<h3 id="Overall-stops-per-minute">Overall stops per minute<a class="anchor-link" href="#Overall-stops-per-minute">&#182;</a></h3><p>First time that I play with this kind of timeseries with pandas, so I'll try a few different ways (including the deprecated seaborn tsplot). Not gonna try to explain how these methods compare... I keep the diversity mostly for educational purposes.</p>
 
 </div>
 </div>
