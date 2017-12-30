@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 import os
 
 AUTHOR = 'Dan Bareket'
-SITENAME = 'associlate'
+SITENAME = 'cjer'
 SITEURL = 'https://cjer.github.io'
 
 PATH = 'content'
@@ -60,4 +60,4 @@ if not os.path.exists('_nb_header.html'):
 else:
     EXTRA_HEADER = open('_nb_header.html', encoding='utf-8').read()
 
-THEME = 'pelican-sober'
+THEME = 'iris'
