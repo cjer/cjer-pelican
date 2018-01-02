@@ -11917,7 +11917,7 @@ Using pandas, seaborn and the all new and cool partridge.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Exploring-Israel's-MOT-GTFS-files...-Part-2">Exploring Israel's MOT GTFS files... Part 2<a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files...-Part-2">&#182;</a></h1><p>Second post in the "Playing with GTFS" series, where I'm trying to show a play-by-play analysis of the Israeli GTFS for SIRI archiving purposes.</p>
+<h1 id="Exploring-Israel's-MOT-GTFS-files...-Part-2">Exploring Israel's MOT GTFS files... Part 2<a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files...-Part-2">&#182;</a></h1><p>Second post in the "Playing with GTFS" series, where I'm trying to show a play-by-play analysis of the Israeli GTFS for SIRI archiving purposes we have at <a href="https://github.com/hasadna/open-bus">hasadna/open-bus</a>.</p>
 <p>The agenda this time is: (again, you can skip to item 3 if you're just interested in the stats, or if you already read the previous post):</p>
 <ol>
 <li><a href="#Get-the-data">Get up-to-date GTFS files from the MOT FTP server</a></li>
@@ -11927,7 +11927,7 @@ Using pandas, seaborn and the all new and cool partridge.</p>
 <li><a href="#Geo-teaser">A geo teaser :)</a></li>
 <li><a href="#On-the-next-episodes">One the next episodes</a> Yep, not all is covered in this notebook</li>
 </ol>
-<p>On the technical side, I'm covering a few weird spots with Categorical columns in pandas, namely - working with missing values and categoricals, and grouping on categoricals.</p>
+<p>On the pedagogical side, I'm covering a few weird and interesting areas with Categorical columns in pandas, namely - working with <a href="#Stops-per-route">missing values and categoricals</a>, and <a href="#On-road-per-route">grouping on categoricals</a>. Categoricals can be very helpful, but that comes at a price of having to pay a somewhat careful attention when using them.</p>
 
 </div>
 </div>
@@ -12381,10 +12381,7 @@ Oh goody! we&#39;re up-to-date!
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tidy-it-up">Tidy it up<a class="anchor-link" href="#Tidy-it-up">&#182;</a></h2><p>Many of Seaborn's built-in features call for the data to be in a Pandas DataFrame and to take the form of what Hadley Whickam calls <a href="http://vita.had.co.nz/papers/tidy-data.pdf">“tidy” data</a>. In brief, that means your dataframe should be structured such that each column is a variable and each row is an observation.</p>
-<p>Moreover, as Tom Augspurger <a href="https://tomaugspurger.github.io/modern-5-tidy.html">claims here</a>, starting an analysis with a tidy dataset should truly help <em>"facilitate analysis: going as quickly as possible from question to answer."</em> I'm taking his word on this now, and hope to show this in work here too.</p>
-<p>Later, We'll also play a little bit with pivoting between long and wide formats.</p>
-<p>We'll start with one tidy dataset for stop_times, I'll use <a href="https://github.com/remix/partridge/tree/master/partridge">partridge</a> for filtering on dates.</p>
+<h2 id="Tidy-it-up">Tidy it up<a class="anchor-link" href="#Tidy-it-up">&#182;</a></h2><p>Again I'm using <a href="https://github.com/remix/partridge/tree/master/partridge">partridge</a> for filtering on dates, and then some tidying up and transformations.</p>
 
 </div>
 </div>
@@ -13004,7 +13001,8 @@ dtype: object</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Stops-per-route">Stops per route<a class="anchor-link" href="#Stops-per-route">&#182;</a></h3><p>I'm starting this with some simple summary statistics. We do need to take into account missing values, I want the statistics to include missing names as well, so replace missing names with an empty strings seems like the way to go. Doing this with Categorical dtypes needs some extra tinkering, since we don't have a category for an empty string in the original data, so we add one.</p>
+<h3 id="Stops-per-route">Stops per route<a class="anchor-link" href="#Stops-per-route">&#182;</a></h3><p>I'm starting this with some simple summary statistics. We do need to take into account missing values, I want the statistics to include missing names as well, so replace missing names with an empty strings seems like the way to go.</p>
+<p><strong>First pedagogical note:</strong> Doing this with Categorical dtypes needs some extra tinkering, since we don't have a category for an empty string in the original data, so we add one.</p>
 
 </div>
 </div>
@@ -14022,16 +14020,15 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[118]:</div>
+<div class="prompt input_prompt">In&nbsp;[224]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">route_filter</span> <span class="o">=</span> <span class="n">route_counts</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">route_id</span>
-<span class="n">fr</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">route_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">route_filter</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;trip_id&#39;</span><span class="p">,</span> <span class="s1">&#39;route_id&#39;</span><span class="p">])</span>
+<span class="n">fr</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">route_id</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">route_filter</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;trip_id&#39;</span><span class="p">,</span> <span class="s1">&#39;route_id&#39;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
      <span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;departure_time&#39;</span><span class="p">:</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span>
           <span class="s1">&#39;arrival_time&#39;</span><span class="p">:</span> <span class="s1">&#39;max&#39;</span><span class="p">})</span>
      <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">to_timedelta</span><span class="p">)</span>
-     <span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;arrival_time&#39;</span><span class="p">,</span> <span class="s1">&#39;departure_time&#39;</span><span class="p">])</span>
-     <span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+     <span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;arrival_time&#39;</span><span class="p">,</span> <span class="s1">&#39;departure_time&#39;</span><span class="p">]))</span>
 <span class="c1"># converting the categorical to numerical</span>
 <span class="n">fr</span><span class="p">[</span><span class="s1">&#39;route_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fr</span><span class="p">[</span><span class="s1">&#39;route_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
 <span class="n">fr</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -14047,7 +14044,7 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[118]:</div>
+<div class="prompt output_prompt">Out[224]:</div>
 
 
 
@@ -14078,35 +14075,35 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>2266</th>
       <td>30273777_211217</td>
       <td>11073</td>
       <td>00:00:00</td>
       <td>00:26:14</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>2269</th>
       <td>30274103_211217</td>
       <td>11074</td>
       <td>00:00:00</td>
       <td>00:26:34</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>1131</th>
       <td>24167917_171217</td>
       <td>11514</td>
       <td>00:00:00</td>
       <td>00:28:40</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>2251</th>
       <td>30271372_211217</td>
       <td>11513</td>
       <td>00:00:00</td>
       <td>00:28:46</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>960</th>
       <td>19296737_211217</td>
       <td>11523</td>
       <td>00:10:00</td>
@@ -14127,14 +14124,14 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Note the conversion of the categorical. We actually don't want route_id to be categorical right now, because it screws us up when grouping, and gives us the unused categories too, which is exactly what we were trying to filter out.</p>
+<p><strong>Second pedagogical note:</strong> Note the conversion of the categorical. We actually don't want route_id to be categorical right now, because it screws us up when grouping, and gives us the unused categories too, which is exactly what we were trying to filter out.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[105]:</div>
+<div class="prompt input_prompt">In&nbsp;[225]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fr</span><span class="o">.</span><span class="n">shape</span>
@@ -14150,7 +14147,7 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[105]:</div>
+<div class="prompt output_prompt">Out[225]:</div>
 
 
 
@@ -14177,7 +14174,7 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[106]:</div>
+<div class="prompt input_prompt">In&nbsp;[226]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">departures</span> <span class="o">=</span> <span class="p">(</span><span class="n">fr</span><span class="p">[[</span><span class="s1">&#39;departure_time&#39;</span><span class="p">,</span> <span class="s1">&#39;route_id&#39;</span><span class="p">]]</span>
@@ -14327,7 +14324,8 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="TODO:-combine-the-two-route-directions.-The-hue-kind-of-works-here,-but-for-a-final-tool-we-wanna-be-able-to-combine-the-two,-since-we-will-probably-always-want-to-archive-a-line-for-both-its-directions.">TODO: combine the two route directions. The hue kind of works here, but for a final tool we wanna be able to combine the two, since we will probably always want to archive a line for both its directions.<a class="anchor-link" href="#TODO:-combine-the-two-route-directions.-The-hue-kind-of-works-here,-but-for-a-final-tool-we-wanna-be-able-to-combine-the-two,-since-we-will-probably-always-want-to-archive-a-line-for-both-its-directions.">&#182;</a></h1>
+<p>TODO: combine the two route directions. The hue kind of works here, but for a final tool we wanna be able to combine the two, since we will probably always want to archive a line for both its directions.</p>
+
 </div>
 </div>
 </div>

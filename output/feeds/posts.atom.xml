@@ -37,7 +37,7 @@ Using pandas, seaborn and the all new and cool partridge.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="Exploring-Israel's-MOT-GTFS-files...-Part-2"&gt;Exploring Israel's MOT GTFS files... Part 2&lt;a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files...-Part-2"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Second post in the "Playing with GTFS" series, where I'm trying to show a play-by-play analysis of the Israeli GTFS for SIRI archiving purposes.&lt;/p&gt;
+&lt;h1 id="Exploring-Israel's-MOT-GTFS-files...-Part-2"&gt;Exploring Israel's MOT GTFS files... Part 2&lt;a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files...-Part-2"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Second post in the "Playing with GTFS" series, where I'm trying to show a play-by-play analysis of the Israeli GTFS for SIRI archiving purposes we have at &lt;a href="https://github.com/hasadna/open-bus"&gt;hasadna/open-bus&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The agenda this time is: (again, you can skip to item 3 if you're just interested in the stats, or if you already read the previous post):&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="#Get-the-data"&gt;Get up-to-date GTFS files from the MOT FTP server&lt;/a&gt;&lt;/li&gt;
@@ -47,7 +47,7 @@ Using pandas, seaborn and the all new and cool partridge.&lt;/p&gt;
 &lt;li&gt;&lt;a href="#Geo-teaser"&gt;A geo teaser :)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="#On-the-next-episodes"&gt;One the next episodes&lt;/a&gt; Yep, not all is covered in this notebook&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;On the technical side, I'm covering a few weird spots with Categorical columns in pandas, namely - working with missing values and categoricals, and grouping on categoricals.&lt;/p&gt;
+&lt;p&gt;On the pedagogical side, I'm covering a few weird and interesting areas with Categorical columns in pandas, namely - working with &lt;a href="#Stops-per-route"&gt;missing values and categoricals&lt;/a&gt;, and &lt;a href="#On-road-per-route"&gt;grouping on categoricals&lt;/a&gt;. Categoricals can be very helpful, but that comes at a price of having to pay a somewhat careful attention when using them.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -501,10 +501,7 @@ Oh goody! we&amp;#39;re up-to-date!
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Tidy-it-up"&gt;Tidy it up&lt;a class="anchor-link" href="#Tidy-it-up"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Many of Seaborn's built-in features call for the data to be in a Pandas DataFrame and to take the form of what Hadley Whickam calls &lt;a href="http://vita.had.co.nz/papers/tidy-data.pdf"&gt;“tidy” data&lt;/a&gt;. In brief, that means your dataframe should be structured such that each column is a variable and each row is an observation.&lt;/p&gt;
-&lt;p&gt;Moreover, as Tom Augspurger &lt;a href="https://tomaugspurger.github.io/modern-5-tidy.html"&gt;claims here&lt;/a&gt;, starting an analysis with a tidy dataset should truly help &lt;em&gt;"facilitate analysis: going as quickly as possible from question to answer."&lt;/em&gt; I'm taking his word on this now, and hope to show this in work here too.&lt;/p&gt;
-&lt;p&gt;Later, We'll also play a little bit with pivoting between long and wide formats.&lt;/p&gt;
-&lt;p&gt;We'll start with one tidy dataset for stop_times, I'll use &lt;a href="https://github.com/remix/partridge/tree/master/partridge"&gt;partridge&lt;/a&gt; for filtering on dates.&lt;/p&gt;
+&lt;h2 id="Tidy-it-up"&gt;Tidy it up&lt;a class="anchor-link" href="#Tidy-it-up"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Again I'm using &lt;a href="https://github.com/remix/partridge/tree/master/partridge"&gt;partridge&lt;/a&gt; for filtering on dates, and then some tidying up and transformations.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1124,7 +1121,8 @@ dtype: object&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Stops-per-route"&gt;Stops per route&lt;a class="anchor-link" href="#Stops-per-route"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I'm starting this with some simple summary statistics. We do need to take into account missing values, I want the statistics to include missing names as well, so replace missing names with an empty strings seems like the way to go. Doing this with Categorical dtypes needs some extra tinkering, since we don't have a category for an empty string in the original data, so we add one.&lt;/p&gt;
+&lt;h3 id="Stops-per-route"&gt;Stops per route&lt;a class="anchor-link" href="#Stops-per-route"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I'm starting this with some simple summary statistics. We do need to take into account missing values, I want the statistics to include missing names as well, so replace missing names with an empty strings seems like the way to go.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;First pedagogical note:&lt;/strong&gt; Doing this with Categorical dtypes needs some extra tinkering, since we don't have a category for an empty string in the original data, so we add one.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2142,16 +2140,15 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[118]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[224]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;route_filter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;route_counts&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reset_index&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route_id&lt;/span&gt;
-&lt;span class="n"&gt;fr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route_id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;route_filter&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;trip_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;route_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;fr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;route_id&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;route_filter&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;trip_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;route_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;as_index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
      &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;agg&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;departure_time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;min&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
           &lt;span class="s1"&gt;&amp;#39;arrival_time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;max&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
      &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pipe&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;to_timedelta&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-     &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;arrival_time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;departure_time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-     &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reset_index&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+     &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort_values&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;arrival_time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;departure_time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
 &lt;span class="c1"&gt;# converting the categorical to numerical&lt;/span&gt;
 &lt;span class="n"&gt;fr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;route_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;route_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;int&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;fr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -2167,7 +2164,7 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[118]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[224]:&lt;/div&gt;
 
 
 
@@ -2198,35 +2195,35 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;th&gt;0&lt;/th&gt;
+      &lt;th&gt;2266&lt;/th&gt;
       &lt;td&gt;30273777_211217&lt;/td&gt;
       &lt;td&gt;11073&lt;/td&gt;
       &lt;td&gt;00:00:00&lt;/td&gt;
       &lt;td&gt;00:26:14&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt;
+      &lt;th&gt;2269&lt;/th&gt;
       &lt;td&gt;30274103_211217&lt;/td&gt;
       &lt;td&gt;11074&lt;/td&gt;
       &lt;td&gt;00:00:00&lt;/td&gt;
       &lt;td&gt;00:26:34&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;th&gt;2&lt;/th&gt;
+      &lt;th&gt;1131&lt;/th&gt;
       &lt;td&gt;24167917_171217&lt;/td&gt;
       &lt;td&gt;11514&lt;/td&gt;
       &lt;td&gt;00:00:00&lt;/td&gt;
       &lt;td&gt;00:28:40&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;th&gt;3&lt;/th&gt;
+      &lt;th&gt;2251&lt;/th&gt;
       &lt;td&gt;30271372_211217&lt;/td&gt;
       &lt;td&gt;11513&lt;/td&gt;
       &lt;td&gt;00:00:00&lt;/td&gt;
       &lt;td&gt;00:28:46&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;th&gt;4&lt;/th&gt;
+      &lt;th&gt;960&lt;/th&gt;
       &lt;td&gt;19296737_211217&lt;/td&gt;
       &lt;td&gt;11523&lt;/td&gt;
       &lt;td&gt;00:10:00&lt;/td&gt;
@@ -2247,14 +2244,14 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Note the conversion of the categorical. We actually don't want route_id to be categorical right now, because it screws us up when grouping, and gives us the unused categories too, which is exactly what we were trying to filter out.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Second pedagogical note:&lt;/strong&gt; Note the conversion of the categorical. We actually don't want route_id to be categorical right now, because it screws us up when grouping, and gives us the unused categories too, which is exactly what we were trying to filter out.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[105]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[225]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;fr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;
@@ -2270,7 +2267,7 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[105]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[225]:&lt;/div&gt;
 
 
 
@@ -2297,7 +2294,7 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[106]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[226]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;departures&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fr&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;departure_time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;route_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
@@ -2447,7 +2444,8 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="TODO:-combine-the-two-route-directions.-The-hue-kind-of-works-here,-but-for-a-final-tool-we-wanna-be-able-to-combine-the-two,-since-we-will-probably-always-want-to-archive-a-line-for-both-its-directions."&gt;TODO: combine the two route directions. The hue kind of works here, but for a final tool we wanna be able to combine the two, since we will probably always want to archive a line for both its directions.&lt;a class="anchor-link" href="#TODO:-combine-the-two-route-directions.-The-hue-kind-of-works-here,-but-for-a-final-tool-we-wanna-be-able-to-combine-the-two,-since-we-will-probably-always-want-to-archive-a-line-for-both-its-directions."&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;TODO: combine the two route directions. The hue kind of works here, but for a final tool we wanna be able to combine the two, since we will probably always want to archive a line for both its directions.&lt;/p&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
