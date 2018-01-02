@@ -502,9 +502,9 @@ Oh goody! we&amp;#39;re up-to-date!
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="Tidy-it-up"&gt;Tidy it up&lt;a class="anchor-link" href="#Tidy-it-up"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Many of Seaborn's built-in features call for the data to be in a Pandas DataFrame and to take the form of what Hadley Whickam calls &lt;a href="http://vita.had.co.nz/papers/tidy-data.pdf"&gt;“tidy” data&lt;/a&gt;. In brief, that means your dataframe should be structured such that each column is a variable and each row is an observation.&lt;/p&gt;
-&lt;p&gt;Moreover, as Tom Augspurger &lt;a href="&amp;#39;https://tomaugspurger.github.io/modern-5-tidy.html&amp;#39;"&gt;claims here&lt;/a&gt;, starting an analysis with a tidy dataset should truly help &lt;em&gt;"facilitate analysis: going as quickly as possible from question to answer."&lt;/em&gt; I'm taking his word on this now, and hope to show this in work here too.&lt;/p&gt;
+&lt;p&gt;Moreover, as Tom Augspurger &lt;a href="https://tomaugspurger.github.io/modern-5-tidy.html"&gt;claims here&lt;/a&gt;, starting an analysis with a tidy dataset should truly help &lt;em&gt;"facilitate analysis: going as quickly as possible from question to answer."&lt;/em&gt; I'm taking his word on this now, and hope to show this in work here too.&lt;/p&gt;
 &lt;p&gt;Later, We'll also play a little bit with pivoting between long and wide formats.&lt;/p&gt;
-&lt;p&gt;We'll start with one tidy dataset for stop_times, I'll use &lt;a href="&amp;#39;https://github.com/remix/partridge/tree/master/partridge&amp;#39;"&gt;partridge&lt;/a&gt; for filtering on dates.&lt;/p&gt;
+&lt;p&gt;We'll start with one tidy dataset for stop_times, I'll use &lt;a href="https://github.com/remix/partridge/tree/master/partridge"&gt;partridge&lt;/a&gt; for filtering on dates.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2468,7 +2468,7 @@ For every $trip\_id$, we give $departure\_time = min(departure\_time)$, which sh
 &lt;li&gt;TODO: Turn it all to day-of-week means&lt;/li&gt;
 &lt;li&gt;TODO: some dynamic bokeh web applet to use this as a tool&lt;/li&gt;
 &lt;li&gt;TODO: Useful Geo visualizations &lt;/li&gt;
-&lt;li&gt;TODO: Some graph theory magic (&lt;a href="&amp;#39;http://kuanbutts.com/2017/12/13/betweenness-centrality-peartree/&amp;#39;"&gt;example&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;TODO: Some graph theory magic (&lt;a href="http://kuanbutts.com/2017/12/13/betweenness-centrality-peartree/"&gt;example&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;/div&gt;
@@ -2483,7 +2483,7 @@ Using pandas, seaborn and the all new and cool partridge.&lt;/p&gt;
 &lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[54]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
@@ -2513,8 +2513,8 @@ Using pandas, seaborn and the all new and cool partridge.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="Exploring-Israel's-MOT-GTFS-files..."&gt;Exploring Israel's MOT GTFS files...&lt;a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files..."&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Over at &lt;a href="&amp;#39;https://github.com/hasadna/open-bus&amp;#39;"&gt;hasadna/open-bus&lt;/a&gt; we want to build an archive of country-wide bus arrival times. Our way to get there is through a &lt;a href="&amp;#39;https://www.gov.il/he/Departments/General/real_time_information_siri&amp;#39;"&gt;SIRI interface&lt;/a&gt; provided by the Ministry of Transportation. We need to continually make SOAP requests, in such a way so that their aggregated bus location responses will allow us to calculate arrival times for all bus rides across the country.&lt;/p&gt;
-&lt;p&gt;In order to do so, I want to first analyze MOT's &lt;a href="&amp;#39;https://www.gov.il/he/Departments/General/gtfs_general_transit_feed_specifications&amp;#39;"&gt;static GTFS data&lt;/a&gt; to figure out what kind of numbers we're talking about, so we can start talking about design and scale for building an efficient and robust archiving module for SIRI realtime info.&lt;/p&gt;
+&lt;h1 id="Exploring-Israel's-MOT-GTFS-files..."&gt;Exploring Israel's MOT GTFS files...&lt;a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files..."&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Over at &lt;a href="https://github.com/hasadna/open-bus"&gt;hasadna/open-bus&lt;/a&gt; we want to build an archive of country-wide bus arrival times. Our way to get there is through a &lt;a href="https://www.gov.il/he/Departments/General/real_time_information_siri"&gt;SIRI interface&lt;/a&gt; provided by the Ministry of Transportation. We need to continually make SOAP requests, in such a way so that their aggregated bus location responses will allow us to calculate arrival times for all bus rides across the country.&lt;/p&gt;
+&lt;p&gt;In order to do so, I want to first analyze MOT's &lt;a href="https://www.gov.il/he/Departments/General/gtfs_general_transit_feed_specifications"&gt;static GTFS data&lt;/a&gt; to figure out what kind of numbers we're talking about, so we can start talking about design and scale for building an efficient and robust archiving module for SIRI realtime info.&lt;/p&gt;
 &lt;p&gt;The agenda for this notebook is roughly so: (you can skip to item 3 if you're just interested in the stats):&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="#Get-the-data"&gt;Get up-to-date GTFS files from the MOT FTP server&lt;/a&gt;&lt;/li&gt;
@@ -2539,12 +2539,12 @@ I'm not using it here, since want this notebook to be standalone for further exp
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[55]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
 &lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;MOT_FTP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;gtfs.mot.gov.il&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;FILE_NAME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;israel-public-transportation.zip&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;UPTODATE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="c1"&gt;#days&lt;/span&gt;
+&lt;span class="n"&gt;UPTODATE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;90&lt;/span&gt; &lt;span class="c1"&gt;#days&lt;/span&gt;
 &lt;span class="n"&gt;local_zip_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;data/sample/gtfs.zip&amp;#39;&lt;/span&gt; 
 
 &lt;span class="n"&gt;conn&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;FTP&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;MOT_FTP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -2564,18 +2564,18 @@ I'm not using it here, since want this notebook to be standalone for further exp
 
 &lt;div class="output_area"&gt;
 
-&lt;div class="prompt output_prompt"&gt;Out[55]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[2]:&lt;/div&gt;
 
 
 
 
 &lt;div class="output_text output_subarea output_execute_result"&gt;
 &lt;pre&gt;[&amp;#39;11-18-13  02:20PM       &amp;lt;DIR&amp;gt;          aspnet_client&amp;#39;,
- &amp;#39;12-26-17  11:47PM                23832 ClusterToLine.zip&amp;#39;,
- &amp;#39;12-26-17  11:47PM            173209713 israel-public-transportation.zip&amp;#39;,
- &amp;#39;12-26-17  11:47PM                 1487 Tariff.zip&amp;#39;,
- &amp;#39;12-26-17  11:47PM                20631 TrainOfficeLineId.zip&amp;#39;,
- &amp;#39;12-26-17  11:47PM              5985990 TripIdToDate.zip&amp;#39;,
+ &amp;#39;01-01-18  10:59PM                23797 ClusterToLine.zip&amp;#39;,
+ &amp;#39;01-01-18  10:59PM            143748412 israel-public-transportation.zip&amp;#39;,
+ &amp;#39;01-01-18  10:59PM                 1487 Tariff.zip&amp;#39;,
+ &amp;#39;01-01-18  10:59PM                34601 TrainOfficeLineId.zip&amp;#39;,
+ &amp;#39;01-01-18  10:59PM              4566049 TripIdToDate.zip&amp;#39;,
  &amp;#39;12-20-17  04:37PM                53105 zones.zip&amp;#39;]&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -2882,9 +2882,9 @@ Oh goody! we&amp;#39;re up-to-date!
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="Tidy-it-up"&gt;Tidy it up&lt;a class="anchor-link" href="#Tidy-it-up"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Many of Seaborn's built-in features call for the data to be in a Pandas DataFrame and to take the form of what Hadley Whickam calls &lt;a href="http://vita.had.co.nz/papers/tidy-data.pdf"&gt;“tidy” data&lt;/a&gt;. In brief, that means your dataframe should be structured such that each column is a variable and each row is an observation.&lt;/p&gt;
-&lt;p&gt;Moreover, as Tom Augspurger &lt;a href="&amp;#39;https://tomaugspurger.github.io/modern-5-tidy.html&amp;#39;"&gt;claims here&lt;/a&gt;, starting an analysis with a tidy dataset should truly help &lt;em&gt;"facilitate analysis: going as quickly as possible from question to answer."&lt;/em&gt; I'm taking his word on this now, and hope to show this in work here too.&lt;/p&gt;
+&lt;p&gt;Moreover, as Tom Augspurger &lt;a href="https://tomaugspurger.github.io/modern-5-tidy.html"&gt;claims here&lt;/a&gt;, starting an analysis with a tidy dataset should truly help &lt;em&gt;"facilitate analysis: going as quickly as possible from question to answer."&lt;/em&gt; I'm taking his word on this now, and hope to show this in work here too.&lt;/p&gt;
 &lt;p&gt;Later, We'll also play a little bit with pivoting between long and wide formats.&lt;/p&gt;
-&lt;p&gt;We'll start with one tidy dataset for stop_times, I'll use &lt;a href="&amp;#39;https://github.com/remix/partridge/tree/master/partridge&amp;#39;"&gt;partridge&lt;/a&gt; for filtering on dates.&lt;/p&gt;
+&lt;p&gt;We'll start with one tidy dataset for stop_times, I'll use &lt;a href="https://github.com/remix/partridge/tree/master/partridge"&gt;partridge&lt;/a&gt; for filtering on dates.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4435,7 +4435,7 @@ Oh goody! we&amp;#39;re up-to-date!
 &lt;li&gt;TODO: calculate bus concurrency (How many buses are on the road right now!)&lt;/li&gt;
 &lt;li&gt;TODO: some dynamic bokeh web applet to use this as a tool&lt;/li&gt;
 &lt;li&gt;TODO: Geo visualizations &lt;/li&gt;
-&lt;li&gt;TODO: Some graph theory magic (&lt;a href="&amp;#39;http://kuanbutts.com/2017/12/13/betweenness-centrality-peartree/&amp;#39;"&gt;example&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;TODO: Some graph theory magic (&lt;a href="http://kuanbutts.com/2017/12/13/betweenness-centrality-peartree/"&gt;example&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;/div&gt;

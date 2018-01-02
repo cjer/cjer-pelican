@@ -11886,7 +11886,7 @@ Using pandas, seaborn and the all new and cool partridge.</p>
 <p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -11916,8 +11916,8 @@ Using pandas, seaborn and the all new and cool partridge.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Exploring-Israel's-MOT-GTFS-files...">Exploring Israel's MOT GTFS files...<a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files...">&#182;</a></h1><p>Over at <a href="&#39;https://github.com/hasadna/open-bus&#39;">hasadna/open-bus</a> we want to build an archive of country-wide bus arrival times. Our way to get there is through a <a href="&#39;https://www.gov.il/he/Departments/General/real_time_information_siri&#39;">SIRI interface</a> provided by the Ministry of Transportation. We need to continually make SOAP requests, in such a way so that their aggregated bus location responses will allow us to calculate arrival times for all bus rides across the country.</p>
-<p>In order to do so, I want to first analyze MOT's <a href="&#39;https://www.gov.il/he/Departments/General/gtfs_general_transit_feed_specifications&#39;">static GTFS data</a> to figure out what kind of numbers we're talking about, so we can start talking about design and scale for building an efficient and robust archiving module for SIRI realtime info.</p>
+<h1 id="Exploring-Israel's-MOT-GTFS-files...">Exploring Israel's MOT GTFS files...<a class="anchor-link" href="#Exploring-Israel's-MOT-GTFS-files...">&#182;</a></h1><p>Over at <a href="https://github.com/hasadna/open-bus">hasadna/open-bus</a> we want to build an archive of country-wide bus arrival times. Our way to get there is through a <a href="https://www.gov.il/he/Departments/General/real_time_information_siri">SIRI interface</a> provided by the Ministry of Transportation. We need to continually make SOAP requests, in such a way so that their aggregated bus location responses will allow us to calculate arrival times for all bus rides across the country.</p>
+<p>In order to do so, I want to first analyze MOT's <a href="https://www.gov.il/he/Departments/General/gtfs_general_transit_feed_specifications">static GTFS data</a> to figure out what kind of numbers we're talking about, so we can start talking about design and scale for building an efficient and robust archiving module for SIRI realtime info.</p>
 <p>The agenda for this notebook is roughly so: (you can skip to item 3 if you're just interested in the stats):</p>
 <ol>
 <li><a href="#Get-the-data">Get up-to-date GTFS files from the MOT FTP server</a></li>
@@ -11942,12 +11942,12 @@ I'm not using it here, since want this notebook to be standalone for further exp
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">MOT_FTP</span> <span class="o">=</span> <span class="s1">&#39;gtfs.mot.gov.il&#39;</span>
 <span class="n">FILE_NAME</span> <span class="o">=</span> <span class="s1">&#39;israel-public-transportation.zip&#39;</span>
-<span class="n">UPTODATE</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1">#days</span>
+<span class="n">UPTODATE</span> <span class="o">=</span> <span class="mi">90</span> <span class="c1">#days</span>
 <span class="n">local_zip_path</span> <span class="o">=</span> <span class="s1">&#39;data/sample/gtfs.zip&#39;</span> 
 
 <span class="n">conn</span> <span class="o">=</span> <span class="n">FTP</span><span class="p">(</span><span class="n">MOT_FTP</span><span class="p">)</span>
@@ -11967,18 +11967,18 @@ I'm not using it here, since want this notebook to be standalone for further exp
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[55]:</div>
+<div class="prompt output_prompt">Out[2]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>[&#39;11-18-13  02:20PM       &lt;DIR&gt;          aspnet_client&#39;,
- &#39;12-26-17  11:47PM                23832 ClusterToLine.zip&#39;,
- &#39;12-26-17  11:47PM            173209713 israel-public-transportation.zip&#39;,
- &#39;12-26-17  11:47PM                 1487 Tariff.zip&#39;,
- &#39;12-26-17  11:47PM                20631 TrainOfficeLineId.zip&#39;,
- &#39;12-26-17  11:47PM              5985990 TripIdToDate.zip&#39;,
+ &#39;01-01-18  10:59PM                23797 ClusterToLine.zip&#39;,
+ &#39;01-01-18  10:59PM            143748412 israel-public-transportation.zip&#39;,
+ &#39;01-01-18  10:59PM                 1487 Tariff.zip&#39;,
+ &#39;01-01-18  10:59PM                34601 TrainOfficeLineId.zip&#39;,
+ &#39;01-01-18  10:59PM              4566049 TripIdToDate.zip&#39;,
  &#39;12-20-17  04:37PM                53105 zones.zip&#39;]</pre>
 </div>
 
@@ -12285,9 +12285,9 @@ Oh goody! we&#39;re up-to-date!
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Tidy-it-up">Tidy it up<a class="anchor-link" href="#Tidy-it-up">&#182;</a></h1><p>Many of Seaborn's built-in features call for the data to be in a Pandas DataFrame and to take the form of what Hadley Whickam calls <a href="http://vita.had.co.nz/papers/tidy-data.pdf">“tidy” data</a>. In brief, that means your dataframe should be structured such that each column is a variable and each row is an observation.</p>
-<p>Moreover, as Tom Augspurger <a href="&#39;https://tomaugspurger.github.io/modern-5-tidy.html&#39;">claims here</a>, starting an analysis with a tidy dataset should truly help <em>"facilitate analysis: going as quickly as possible from question to answer."</em> I'm taking his word on this now, and hope to show this in work here too.</p>
+<p>Moreover, as Tom Augspurger <a href="https://tomaugspurger.github.io/modern-5-tidy.html">claims here</a>, starting an analysis with a tidy dataset should truly help <em>"facilitate analysis: going as quickly as possible from question to answer."</em> I'm taking his word on this now, and hope to show this in work here too.</p>
 <p>Later, We'll also play a little bit with pivoting between long and wide formats.</p>
-<p>We'll start with one tidy dataset for stop_times, I'll use <a href="&#39;https://github.com/remix/partridge/tree/master/partridge&#39;">partridge</a> for filtering on dates.</p>
+<p>We'll start with one tidy dataset for stop_times, I'll use <a href="https://github.com/remix/partridge/tree/master/partridge">partridge</a> for filtering on dates.</p>
 
 </div>
 </div>
@@ -13838,7 +13838,7 @@ Oh goody! we&#39;re up-to-date!
 <li>TODO: calculate bus concurrency (How many buses are on the road right now!)</li>
 <li>TODO: some dynamic bokeh web applet to use this as a tool</li>
 <li>TODO: Geo visualizations </li>
-<li>TODO: Some graph theory magic (<a href="&#39;http://kuanbutts.com/2017/12/13/betweenness-centrality-peartree/&#39;">example</a>)</li>
+<li>TODO: Some graph theory magic (<a href="http://kuanbutts.com/2017/12/13/betweenness-centrality-peartree/">example</a>)</li>
 </ul>
 
 </div>
