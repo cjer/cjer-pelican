@@ -1,12 +1,14 @@
 Title: Playing with GTFS II - Concurrency
 Date: 2018-01-04 21:33
-Modified: 2018-01-04 23:54
+Modified: 2018-01-05 12:30
 Category: Posts
 Tags: openbus, gtfs, pandas, seaborn, partridge, concurrency
 Authors: Dan Bareket
 Summary: Second post playing with Israel's Ministry of Transportation GTFS data, with a focus on concurrency stats. Using pandas, seaborn and the all new and cool partridge.
 
+
 *Second post of the Playing with GTFS series.*
+
 
 
 On the previous episode, we played with stop time stats. This time I'm digging a little deeper, with a focus on concurrency stats.
