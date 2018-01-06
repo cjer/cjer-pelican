@@ -9,6 +9,13 @@ SITEURL = 'https://cjer.github.io'
 
 PATH = 'content'
 
+STATIC_PATHS = ['extra']
+EXTRA_PATH_METADATA = {
+    'extra/google7a5dd5ba97352752.html': {'path': 'google7a5dd5ba97352752.html'},
+    'extra/README.md': {'path': 'README.md'}
+    }
+ARTICLE_EXCLUDES = ['extra']
+
 TIMEZONE = 'Asia/Tel_Aviv'
 
 DEFAULT_LANG = 'English'
@@ -20,15 +27,16 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
+OUTPUT_PATH = '../cjer.github.io/'
 DELETE_OUTPUT_DIRECTORY = True
+OUTPUT_RETENTION = ['.git']
 
 GOOGLE_ANALYTICS = "UA-111620097-1"
 DISQUS_SITENAME = "cjer"
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),)
+LINKS = (('OpenBus', 'https://github.com/hasadna/open-bus/'),
+		)
 
 # Social widget
 SOCIAL = (('Social link will come here', '#'),)
