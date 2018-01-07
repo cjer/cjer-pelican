@@ -69,4 +69,20 @@ if not os.path.exists('_nb_header.html'):
 else:
     EXTRA_HEADER = open('_nb_header.html', encoding='utf-8').read()
 
-THEME = 'pelican-sober'
+THEME = 'theme'
+
+### FOR NEW THEME
+
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'codehilite'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+    },
+    'output_format': 'html5',
+}
+
+IPYNB_EXTEND_STOP_SUMMARY_TAGS = [('h2', None), ('ol', None), ('ul', None)]
+
+SHOW_ARCHIVES = True
+SHOW_FEED = True
