@@ -14,6 +14,6 @@ Again, we're playing with Israel's Ministry of Transportation GTFS data, this ti
 {% notebook openbus_3_geo.ipynb %}
 
 ## Playing with GTFS
-[Part 1: Stop and Go](/playing-with-gtfs.html)
-[Part 2: Concurrency](/playing-with-gtfs-ii-concurrency.html)
-[Part 3: Geo & Graph](/playing-with-gtfs-iii-geo-graphs.html)
+* [Part 1: Stop and Go](/playing-with-gtfs.html)
+* [Part 2: Concurrency](/playing-with-gtfs-ii-concurrency.html)
+* [Part 3: Geo & Graph](/playing-with-gtfs-iii-geo-graphs.html)

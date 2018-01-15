@@ -16,6 +16,6 @@ Using pandas, seaborn and the all new and cool partridge.
 {% notebook openbus_1_basics.ipynb %}
 
 ## Playing with GTFS
-[Part 1: Stop and Go](/playing-with-gtfs.html)
-[Part 2: Concurrency](/playing-with-gtfs-ii-concurrency.html)
-[Part 3: Geo & Graph](/playing-with-gtfs-iii-geo-graphs.html)
+* [Part 1: Stop and Go](/playing-with-gtfs.html)
+* [Part 2: Concurrency](/playing-with-gtfs-ii-concurrency.html)
+* [Part 3: Geo & Graph](/playing-with-gtfs-iii-geo-graphs.html)
