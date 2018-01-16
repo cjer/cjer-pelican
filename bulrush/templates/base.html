@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width">
+  <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
+  {% assets filters="less,yui_css", output="css/main.%(version)s.css", "css/main.less" %}
+    <link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
+  {% endassets %}
+  <style media="print">.is-hidden-print{display:none !important}</style>
+  {% for extra_path in EXTRA_PATH_METADATA.values() %}
+    {% if extra_path.get('path', '').endswith('.css') %}
+      <link rel="stylesheet" href="{{ SITEURL }}/{{ extra_path['path'] }}">
+    {% endif %}
+  {% endfor %}
+  {% block tags %}
+  {% endblock %}
+</head>
+
+<body id="index" class="home">
+<header class="hero is-primary">
+  <div class="hero-head">
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-left">
+          <a class="nav-item is-brand title is-3{% if output_file == "index.html" %} is-active{% endif %}"
+             href="{{ SITEURL }}/">{{ SITENAME }}</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<nav class="nav has-shadow is-hidden-print">
+  <div class="container">
+    <div class="nav-center"></div>
+    <span id="navToggle" class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <div id="navMenu" class="nav-right nav-menu">
+      {% for title, link in MENUITEMS|reverse %}
+        <a class="nav-item is-tab" href="{{ link }}">{{ title }}</a>
+      {% endfor %}
+      {% if DISPLAY_CATEGORIES_ON_MENU %}
+        {% for cat, null in categories|reverse %}
+          <a class="nav-item is-tab {% if cat == category %}is-active{% endif %}"
+             href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="section columns">
+    <div class="column is-three-quarters-desktop is-two-thirds-tablet">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <div class="column is-one-quarter-desktop is-one-third-tablet is-hidden-print">
+      <aside class="menu">
+        {% if MAILCHIMP %}
+          {%  include 'mailchimp.html' %}
+        {% endif %}
+        {% if (pages and DISPLAY_PAGES_ON_MENU) or FEED_ALL_ATOM or FEED_ALL_RSS %}
+          <p class="menu-label">Other Pages</p>
+          <ul class="menu-list">
+            {% if DISPLAY_PAGES_ON_MENU %}
+              {% for pg in pages %}
+                <li><a {% if pg == page %}class="is-active"{% endif %}
+                       href="{{ SITEURL }}/{{ pg.url }}">
+                  <span class="icon is-small"><i class="fa fa-book"></i></span>
+                  <span class="link-text">{{ pg.title }}</span>
+                </a></li>
+              {% endfor %}
+            {% endif %}
+            {% if FEED_ALL_ATOM %}
+              <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}"
+                     type="application/atom+xml" rel="alternate">
+                <span class="icon is-small"><i class="fa fa-rss"></i></span>
+                <span class="link-text">Atom Feed</span>
+              </a></li>
+            {% endif %}
+            {% if FEED_ALL_RSS %}
+              <li><a href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}"
+                     type="application/rss+xml" rel="alternate">
+                <span class="icon is-small"><i class="fa fa-rss"></i></span>
+                <span class="link-text">RSS Feed</span>
+              </a></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+        {% if LINKS %}
+          <p class="menu-label">Links</p>
+          <ul class="menu-list">
+            {% for name, link in LINKS %}
+              <li><a href="{{ link }}">
+                <span class="icon is-small"><i class="fa fa-globe fa-fw"></i></span>
+                <span class="link-text">{{ name }}</span>
+              </a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if SOCIAL %}
+          {% include 'social.html' %}
+        {% endif %}
+        {% if LICENSE %}
+          <p class="menu-label">License</p>
+          {{ LICENSE | license | safe }}
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container has-text-centered">
+    {% if SITESUBTITLE %} <p class="subtitle">{{ SITESUBTITLE }}</p>{% endif %}
+    <p><a href="https://github.com/textbook/bulrush">Bulrush</a> theme for
+        <a href="https://blog.getpelican.com/">Pelican</a>
+      | <span class="icon is-small"><i class="fa fa-html5"></i></span> HTML 5
+      | <span class="icon is-small"><i class="fa fa-css3"></i></span> CSS 3
+    </p>
+  </div>
+  {% include 'github.html' %}
+</footer>
+
+{% include 'analytics.html' %}
+{% include 'disqus_script.html' %}
+<script type="text/javascript">
+  document.getElementById('navToggle').addEventListener('click', function () {
+    var nav = document.getElementById('navMenu');
+    var className = nav.getAttribute('class');
+    if (className == 'nav-right nav-menu') {
+      nav.className = 'nav-right nav-menu is-active';
+    } else {
+      nav.className = 'nav-right nav-menu';
+    }
+  });
+</script>
+</body>
+</html>
