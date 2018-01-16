@@ -27,7 +27,7 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-OUTPUT_PATH = '../cjer.github.io/'
+OUTPUT_PATH = '../cjer.github.io_BULRUSH/'
 DELETE_OUTPUT_DIRECTORY = True
 OUTPUT_RETENTION = ['.git']
 
@@ -39,7 +39,7 @@ LINKS = (('OpenBus', 'https://github.com/hasadna/open-bus/'),
 		)
 
 # Social widget
-SOCIAL = (('Social link will come here', '#'),)
+SOCIAL = (('Twitter', 'https://twitter.com/dbreqt'),)
 
 DEFAULT_PAGINATION = 10
 
@@ -48,7 +48,7 @@ DEFAULT_PAGINATION = 10
 
 # Add plugins for notebook usage
 PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
+PLUGINS = ['assets', 'liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.youtube', 'liquid_tags.vimeo',
            'liquid_tags.include_code', 'liquid_tags.notebook',
            'sitemap',]
@@ -69,7 +69,8 @@ if not os.path.exists('_nb_header.html'):
 else:
     EXTRA_HEADER = open('_nb_header.html', encoding='utf-8').read()
 
-THEME = 'theme'
+THEME = 'bulrush'
+
 
 ### FOR NEW THEME
 
@@ -89,3 +90,10 @@ SHOW_FEED = True
 
 GOOGLE_ANALYTICS_CODE = 'UA-111620097-1'
 GOOGLE_ANALYTICS_DOMAIN = 'cjer.github.io'
+
+# BULRUSH STUFF
+
+SITESUBTITLE = 'I need a subtitle'
+import bulrush
+JINJA_ENVIRONMENT = bulrush.ENVIRONMENT
+JINJA_FILTERS = bulrush.FILTERS

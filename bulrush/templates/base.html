@@ -17,6 +17,9 @@
   {% endfor %}
   {% block tags %}
   {% endblock %}
+  {% if EXTRA_HEADER %}
+    {{ EXTRA_HEADER }}
+  {% endif %}
 </head>
 
 <body id="index" class="home">
