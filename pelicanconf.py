@@ -12,7 +12,8 @@ PATH = 'content'
 STATIC_PATHS = ['extra']
 EXTRA_PATH_METADATA = {
     'extra/google7a5dd5ba97352752.html': {'path': 'google7a5dd5ba97352752.html'},
-    'extra/README.md': {'path': 'README.md'}
+    'extra/README.md': {'path': 'README.md'},
+    'extra/BingSiteAuth.xml': {'path': '/BingSiteAuth.xml'}
     }
 ARTICLE_EXCLUDES = ['extra']
 
