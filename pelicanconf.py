@@ -14,7 +14,8 @@ EXTRA_PATH_METADATA = {
     'extra/google7a5dd5ba97352752.html': {'path': 'google7a5dd5ba97352752.html'},
     'extra/README.md': {'path': 'README.md'},
     'extra/BingSiteAuth.xml': {'path': '/BingSiteAuth.xml'},
-    'extra/yandex_0535b382efa4270d.html': {'path': '/yandex_0535b382efa4270d.html'}
+    'extra/yandex_0535b382efa4270d.html': {'path': '/yandex_0535b382efa4270d.html'},
+    'extra/yandex_755c6611da3a3799.html': {'path': '/yandex_755c6611da3a3799.html'}
     }
 ARTICLE_EXCLUDES = ['extra']
 
