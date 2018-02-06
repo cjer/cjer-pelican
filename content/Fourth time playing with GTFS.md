@@ -4,7 +4,7 @@ Modified: 2018-02-07 01:45
 Category: Posts
 Tags: openbus, gtfs, pandas, partridge, data cleanup, debugging
 Authors: Dan Bareket
-Summary: Fourth post playing with Israel's Ministry of Transportation GTFS data, doing some cleanup work and elaborating the process. Using pandas, partridge, and stuff.
+Summary: Fourth post playing with Israel's Ministry of Transportation GTFS data, doing some heavy cleanup work. Using pandas, partridge, and stuff.
 
 
 *Fourth post of the Playing with GTFS series ([1st](/playing-with-gtfs.html), [2nd](/playing-with-gtfs-ii-concurrency.html), [3rd](/playing-with-gtfs-iii-geo-graphs.html)).*
