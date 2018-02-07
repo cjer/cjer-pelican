@@ -87,8 +87,12 @@ MARKDOWN = {
 
 IPYNB_EXTEND_STOP_SUMMARY_TAGS = [('h2', None), ('ol', None), ('ul', None)]
 
+DEFAULT_HEADER_BG = '/images/station1.jpg'
 SHOW_ARCHIVES = True
 SHOW_FEED = True
+GITHUB_USERNAME = 'cjer'
+ABOUT_PAGE = '/pages/about.html'
+
 
 GOOGLE_ANALYTICS_CODE = 'UA-111620097-1'
 GOOGLE_ANALYTICS_DOMAIN = 'cjer.github.io'
