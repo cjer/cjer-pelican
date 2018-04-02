@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 import os
 
 AUTHOR = 'Dan Bareket'
-SITENAME = 'cjer'
-SITEURL = 'https://cjer.github.io'
+SITENAME = 'simplistic'
+SITEURL = 'http://simplistic.me'
 
 PATH = 'content'
 
@@ -96,4 +96,4 @@ ABOUT_PAGE = '/pages/about.html'
 
 
 GOOGLE_ANALYTICS_CODE = 'UA-111620097-1'
-GOOGLE_ANALYTICS_DOMAIN = 'cjer.github.io'
+GOOGLE_ANALYTICS_DOMAIN = 'simplistic.me'
