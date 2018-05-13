@@ -1,6 +1,6 @@
 Title: Eurovision 2018 Explorations
 Date: 2018-05-13 19:46
-Modified: 2018-05-13 20:14
+Modified: 2018-05-13 21:56
 Category: Posts
 Tags: eurovision, pandas, networkx
 Authors: Dan Bareket
