@@ -16,6 +16,7 @@ EXTRA_PATH_METADATA = {
     'extra/tarde_monadology.pdf': {'path': 'tarde_monadology.pdf'},
     'extra/tsne_30_topmk.html': {'path': 'tsne_30_topmk.html'},
     'extra/twitter_heatmap.html': {'path': 'twitter_heatmap.html'},
+    'extra/riders2017_scatter.html': {'path': 'riders2017_scatter.html'},
     # 'extra/google7a5dd5ba97352752.html': {'path': 'google7a5dd5ba97352752.html'},
     # 'extra/BingSiteAuth.xml': {'path': '/BingSiteAuth.xml'},
     # 'extra/yandex_0535b382efa4270d.html': {'path': '/yandex_0535b382efa4270d.html'},
